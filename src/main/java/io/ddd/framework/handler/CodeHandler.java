@@ -6,6 +6,7 @@ import io.ddd.framework.database.ColumnDO;
 import io.ddd.framework.database.TableDO;
 import io.ddd.framework.enums.QuerySQL;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -30,15 +31,16 @@ import java.util.*;
  */
 @Slf4j
 @AllArgsConstructor
+@NoArgsConstructor
 public class CodeHandler {
 
     private Connection connection;
 
     public void execute(Config configuration) {
         String[] tableNames = configuration.getTableNames();
-        log.info("tablesNames:{}",tableNames);
-        Arrays.stream(tableNames).forEach(v-> {
-            if (!StringUtils.isNotBlank(v))log.error("tableName must not null");
+        log.info("tablesNames:{}", tableNames);
+        Arrays.stream(tableNames).forEach(v -> {
+            if (!StringUtils.isNotBlank(v)) log.error("tableName must not null");
             //2.查询表结构
             Map<String, String> table = queryTable(v);
             //3.查询列信息
@@ -141,18 +143,18 @@ public class CodeHandler {
             try {
                 String fileAbsolutePath = templates.get(template)
                         .replace("{moduleName}", config.getModuleName())
-                        .replace("{classLowName}",tableDO.getAllLowName())
+                        .replace("{classLowName}", tableDO.getAllLowName())
                         + template.replace(".vm", "")
                         .replace("Domain", tableDO.getClassName());
                 //判断文件夹是否存在,不存在则创建
                 String sourcePath = config.getSourcePath();
                 String dir = fileAbsolutePath.substring(0, fileAbsolutePath.lastIndexOf("/"));
-                if (StringUtils.isNotBlank(sourcePath)){
-                    if (sourcePath.charAt(sourcePath.length()-1)!='/')sourcePath+="/";
-                    dir = sourcePath+dir;
+                if (StringUtils.isNotBlank(sourcePath)) {
+                    if (sourcePath.charAt(sourcePath.length() - 1) != '/') sourcePath += "/";
+                    dir = sourcePath + dir;
                 }
                 File folder = new File(dir);
-                if (!folder.exists())folder.mkdirs();
+                if (!folder.exists()) folder.mkdirs();
                 fileNames.add(fileAbsolutePath);
                 IOUtils.write(sw.toString(), new FileOutputStream(fileAbsolutePath), "UTF-8");
                 IOUtils.closeQuietly(sw);
@@ -187,58 +189,34 @@ public class CodeHandler {
 
 
     private void storeFileNames(List<String> fileNames) {
-        try {
-            FileWriter fw = new FileWriter("/tmp/fileNameList.txt");
+        try (FileWriter fw = new FileWriter(Constant.STORE_LAST_GENERATOR_FILE_PATH)) {
             for (String s : fileNames) {
-                s="/Users/biaoyang/IdeaProjects/ddd-framework"+s.replace("..","");
-                fw.write(s+"\n");
+                s = "/Users/biaoyang/IdeaProjects/ddd-framework" + s.replace("..", "");
+                fw.write(s + "\n");
             }
-            fw.close();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-    /**
-     * 删除上次生成的文件
-     * @return
-     */
-    public void deleteGenFile() {
-        try {
-            FileInputStream inputStream = new FileInputStream("/tmp/fileNameList.txt");
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String fileName = null;
-            while ((fileName = bufferedReader.readLine()) != null) {
-                File file = new File(fileName);
-                if (!file.exists()) {
-                    log.error("删除文件失败：{} 文件不存在", fileName);
-                } else {
-                    file.delete();
-                }
-            }
-            inputStream.close();
-            bufferedReader.close();
-        }catch (Exception e){
-            log.error("执行删除异常：{} ", e.getMessage());
         }
     }
 
     /**
      * 查询表信息
+     *
      * @param tableName
      * @return
      */
-    public Map<String, String> queryTable(String tableName){
+    public Map<String, String> queryTable(String tableName) {
         Map<String, String> ret = new HashMap<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(String.format(QuerySQL.MYSQL.queryTable, tableName));
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
-                ret.put("tableName",resultSet.getString("tableName"));
-                ret.put("engine",resultSet.getString("engine"));
-                ret.put("tableComment",resultSet.getString("tableComment"));
-                ret.put("createTime",resultSet.getString("createTime"));
+            while (resultSet.next()) {
+                ret.put("tableName", resultSet.getString("tableName"));
+                ret.put("engine", resultSet.getString("engine"));
+                ret.put("tableComment", resultSet.getString("tableComment"));
+                ret.put("createTime", resultSet.getString("createTime"));
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return ret;
@@ -246,24 +224,25 @@ public class CodeHandler {
 
     /**
      * 查询表字段信息
+     *
      * @param tableName
      * @return
      */
-    public List<Map<String, String>> queryColumns(String tableName){
+    public List<Map<String, String>> queryColumns(String tableName) {
         List<Map<String, String>> ret = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(String.format(QuerySQL.MYSQL.queryColumns, tableName));
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Map<String, String> map = new HashMap<>();
-                map.put("columnName",resultSet.getString("columnName"));
-                map.put("dataType",resultSet.getString("dataType"));
-                map.put("columnComment",resultSet.getString("columnComment"));
-                map.put("columnKey",resultSet.getString("columnKey"));
-                map.put("extra",resultSet.getString("extra"));
+                map.put("columnName", resultSet.getString("columnName"));
+                map.put("dataType", resultSet.getString("dataType"));
+                map.put("columnComment", resultSet.getString("columnComment"));
+                map.put("columnKey", resultSet.getString("columnKey"));
+                map.put("extra", resultSet.getString("extra"));
                 ret.add(map);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return ret;

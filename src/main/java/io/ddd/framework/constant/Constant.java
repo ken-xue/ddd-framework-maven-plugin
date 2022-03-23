@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Constant {
+
+    public static final String STORE_LAST_GENERATOR_FILE_PATH = "/tmp/record.txt";
+
     /**
      * 获取模板
      * @return

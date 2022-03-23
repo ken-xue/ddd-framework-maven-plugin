@@ -3,6 +3,7 @@ package io.ddd.framework.mojo;
 import io.ddd.framework.config.Config;
 import io.ddd.framework.config.DataSource;
 import io.ddd.framework.handler.CodeHandler;
+import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.maven.plugin.AbstractMojo;
@@ -13,7 +14,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import java.sql.Connection;
-
+@Data
 @Slf4j
 @Mojo( name= "code" , defaultPhase= LifecyclePhase.PACKAGE,threadSafe = true)
 public class ExecutorMojo extends AbstractMojo {
@@ -39,7 +40,7 @@ public class ExecutorMojo extends AbstractMojo {
         log.info("dataSource:{}",dataSource);
         //1.加载用户配置
         conn = dataSource.getConn();
-        //2.
+        //2.创建代码生成器处理器
         CodeHandler handler = new CodeHandler(conn);
         handler.execute(config);
     }

@@ -16,10 +16,15 @@ public class Config {
     @Parameter(required = true)
     private String[] tableNames;
     /**
-     * 排除的字段
+     * 排除的字段: 默认全部生成
      */
     @Parameter(required = true)
     private String[] excludeFields;
+    /**
+     * 需要用到的代码模板
+     */
+    @Parameter(required = true)
+    private String[] templates;
     /**
      * 生成代码路径
      */
