@@ -1,10 +1,10 @@
-package io.ddd.framework.application.application.${moduleName}.${allLowName}.handler;
+package ${basePackageName}.application.application.${moduleName}.${allLowName}.handler;
 
 
-import io.ddd.framework.application.common.event.EventHandler;
-import io.ddd.framework.application.common.event.EventHandlerI;
-import io.ddd.framework.coreclient.dto.common.response.Response;
-import io.ddd.framework.coreclient.dto.${moduleName}.${allLowName}.event.${className}DeleteEvent;
+import ${basePackageName}.application.common.event.EventHandler;
+import ${basePackageName}.application.common.event.EventHandlerI;
+import ${basePackageName}.coreclient.dto.common.response.Response;
+import ${basePackageName}.coreclient.dto.${moduleName}.${allLowName}.event.${className}DeleteEvent;
 import lombok.extern.slf4j.Slf4j;
 
 /**

@@ -123,7 +123,7 @@ public class CodeHandler {
         map.put("columns", tableDO.getColumns());
         map.put("hasBigDecimal", hasBigDecimal);
         map.put("hasList", hasList);
-        map.put("package", config.getPackageName());
+        map.put("basePackageName", config.getBasePackageName());
         map.put("moduleName", config.getModuleName());
         map.put("author", config.getAuthor());
         map.put("email", config.getEmail());
@@ -131,7 +131,7 @@ public class CodeHandler {
         VelocityContext context = new VelocityContext(map);
 
         //获取模板列表
-        Map<String, String> templates = Constant.getTemplates(config.getTemplates());
+        Map<String, String> templates = Constant.getTemplates(config.getTemplates(),config.getBasePackageName());
         for (String template : templates.keySet()) {
             //渲染模板
             StringWriter sw = new StringWriter();
@@ -143,9 +143,9 @@ public class CodeHandler {
                         .replace("Domain", tableDO.getClassName());
                 //判断文件夹是否存在,不存在则创建
                 String sourcePath = config.getSourcePath();
-                String dir = fileAbsolutePath.substring(0, fileAbsolutePath.lastIndexOf("/"));
+                String dir = fileAbsolutePath.substring(0, fileAbsolutePath.lastIndexOf(Constant.separator));
                 if (StringUtils.isNotBlank(sourcePath)) {
-                    if (sourcePath.charAt(sourcePath.length() - 1) != '/') sourcePath += "/";
+                    if (sourcePath.charAt(sourcePath.length() - 1) != File.separatorChar) sourcePath += Constant.separator;
                     dir = sourcePath + dir;
                 }
                 File folder = new File(dir);
@@ -188,7 +188,7 @@ public class CodeHandler {
     private void storeFileNames(List<String> fileNames) {
         try (FileWriter fw = new FileWriter(Constant.STORE_LAST_GENERATOR_FILE_PATH)) {
             for (String s : fileNames) {
-                fw.write(s + "\n");
+                fw.write(s + Constant.lineSeparator);
             }
         } catch (Exception e) {
             e.printStackTrace();

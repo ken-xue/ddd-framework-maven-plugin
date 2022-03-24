@@ -44,7 +44,7 @@ public class Config {
      * 包名称
      */
     @Parameter(required = true)
-    private String packageName;
+    private String basePackageName;
     /**
      * 作者
      */

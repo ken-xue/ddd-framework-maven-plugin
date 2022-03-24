@@ -1,6 +1,6 @@
-package io.ddd.framework.domain.factory.${moduleName};
+package ${basePackageName}.domain.factory.${moduleName};
 
-import io.ddd.framework.domain.domain.${moduleName}.${className};
+import ${basePackageName}.domain.domain.${moduleName}.${className};
 /**
  * ${comments}
  * @author ${author}

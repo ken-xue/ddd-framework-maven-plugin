@@ -1,7 +1,7 @@
-package io.ddd.framework.application.application.${moduleName}.${allLowName}.assembler;
+package ${basePackageName}.application.application.${moduleName}.${allLowName}.assembler;
 
-import io.ddd.framework.coreclient.dto.${moduleName}.${allLowName}.${className}DTO;
-import io.ddd.framework.domain.domain.${moduleName}.${className};
+import ${basePackageName}.coreclient.dto.${moduleName}.${allLowName}.${className}DTO;
+import ${basePackageName}.domain.domain.${moduleName}.${className};
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;

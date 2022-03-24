@@ -1,7 +1,7 @@
-package io.ddd.framework.infrastructure.repositoryimpl.${moduleName}.database.convertor;
+package ${basePackageName}.infrastructure.repositoryimpl.${moduleName}.database.convertor;
 
-import io.ddd.framework.domain.domain.${moduleName}.${className};
-import io.ddd.framework.infrastructure.repositoryimpl.${moduleName}.database.dataobject.${className}DO;
+import ${basePackageName}.domain.domain.${moduleName}.${className};
+import ${basePackageName}.infrastructure.repositoryimpl.${moduleName}.database.dataobject.${className}DO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;

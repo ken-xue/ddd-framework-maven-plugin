@@ -1,6 +1,6 @@
-package io.ddd.framework.domain.domain.${moduleName};
+package ${basePackageName}.domain.domain.${moduleName};
 
-import io.ddd.framework.domain.common.CommonEntity;
+import ${basePackageName}.domain.common.CommonEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
