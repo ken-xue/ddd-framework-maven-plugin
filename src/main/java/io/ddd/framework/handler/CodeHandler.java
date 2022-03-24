@@ -39,6 +39,7 @@ public class CodeHandler {
     public void execute(Config configuration) {
         String[] tableNames = configuration.getTableNames();
         log.info("tablesNames:{}", tableNames);
+        List fileNames = new ArrayList<String>();
         Arrays.stream(tableNames).forEach(v -> {
             if (!StringUtils.isNotBlank(v)) log.error("tableName must not null");
             //2.查询表结构
@@ -50,15 +51,16 @@ public class CodeHandler {
             columns.removeIf(map -> exclude.contains(map.get("columnName")));
             //5.生成文件
             try {
-                generatorCode(table, columns, configuration);
+                generate(table, columns,fileNames, configuration);
             } catch (ConfigurationException e) {
                 e.printStackTrace();
             }
         });
+        storeFileNames(fileNames);
     }
 
 
-    public void generatorCode(Map<String, String> table, List<Map<String, String>> columns, Config config) throws ConfigurationException {
+    public void generate(Map<String, String> table, List<Map<String, String>> columns,List fileNames, Config config) throws ConfigurationException {
         //配置信息
         boolean hasBigDecimal = false;
         boolean hasList = false;
@@ -83,7 +85,6 @@ public class CodeHandler {
             String attrName = column2Java(columnDO.getColumnName());
             columnDO.setAttrName(attrName);
             columnDO.setAttrname(StringUtils.uncapitalize(attrName));
-
             //列的数据类型，转换成Java类型
             PropertiesConfiguration configuration = new PropertiesConfiguration("generator.properties");
             String attrType = configuration.getString(columnDO.getDataType(), column2Java(columnDO.getDataType()));
@@ -99,15 +100,12 @@ public class CodeHandler {
             if ("PRI".equalsIgnoreCase(column.get("columnKey")) && tableDO.getPk() == null) {
                 tableDO.setPk(columnDO);
             }
-
             columnsList.add(columnDO);
         }
         tableDO.setColumns(columnsList);
 
         //没主键，则第一个字段为主键
-        if (tableDO.getPk() == null) {
-            tableDO.setPk(tableDO.getColumns().get(0));
-        }
+        if (tableDO.getPk() == null) tableDO.setPk(tableDO.getColumns().get(0));
 
         //设置velocity资源加载器
         Properties prop = new Properties();
@@ -134,17 +132,14 @@ public class CodeHandler {
 
         //获取模板列表
         Map<String, String> templates = Constant.getTemplates(config.getTemplates());
-        List fileNames = new ArrayList<String>();
         for (String template : templates.keySet()) {
             //渲染模板
             StringWriter sw = new StringWriter();
             Template tpl = Velocity.getTemplate("template/" + template, "UTF-8");
             tpl.merge(context, sw);
             try {
-                String fileAbsolutePath = templates.get(template)
-                        .replace("{moduleName}", config.getModuleName())
-                        .replace("{classLowName}", tableDO.getAllLowName())
-                        + template.replace(".vm", "")
+                String fileAbsolutePath = templates.get(template).replace("{moduleName}", config.getModuleName())
+                        .replace("{classLowName}", tableDO.getAllLowName()) + template.replace(".vm", "")
                         .replace("Domain", tableDO.getClassName());
                 //判断文件夹是否存在,不存在则创建
                 String sourcePath = config.getSourcePath();
@@ -162,7 +157,6 @@ public class CodeHandler {
                 e.printStackTrace();
             }
         }
-        storeFileNames(fileNames);
     }
 
 

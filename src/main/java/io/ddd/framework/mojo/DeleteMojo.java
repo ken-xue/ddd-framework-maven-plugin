@@ -27,7 +27,7 @@ public class DeleteMojo extends AbstractMojo {
     @SneakyThrows
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        log.info("delete generator");
+        log.info("delete generator code");
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(Constant.STORE_LAST_GENERATOR_FILE_PATH)))) {
             String fileName;
             while ((fileName = bufferedReader.readLine()) != null) {
@@ -35,6 +35,7 @@ public class DeleteMojo extends AbstractMojo {
                 if (!file.exists()) {
                     log.error("删除文件失败：{} 文件不存在", fileName);
                 } else {
+                    log.info("删除：{} ", fileName);
                     file.delete();
                 }
             }
