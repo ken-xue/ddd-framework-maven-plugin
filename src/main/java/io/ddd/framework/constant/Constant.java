@@ -2,6 +2,7 @@ package io.ddd.framework.constant;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Constant {
 
@@ -11,7 +12,7 @@ public class Constant {
      * 获取模板
      * @return
      */
-    public static Map<String, String> getTemplates() {
+    public static Map<String, String> getTemplates(String[] chooseTemplate) {
         //key:模板路径,value:生成后的路径
         Map<String, String> templates = new HashMap<>();
         templates.put("DomainMenu.sql.vm", "core/infrastructure/src/main/resources/script/");
@@ -61,6 +62,14 @@ public class Constant {
         templates.put("DomainCreateEvent.java.vm","core/core-client/src/main/java/io/ddd/framework/coreclient/dto/{moduleName}/{classLowName}/event/");
         templates.put("DomainDeleteEvent.java.vm","core/core-client/src/main/java/io/ddd/framework/coreclient/dto/{moduleName}/{classLowName}/event/");
         templates.put("DomainUpdateEvent.java.vm","core/core-client/src/main/java/io/ddd/framework/coreclient/dto/{moduleName}/{classLowName}/event/");
+
+        if (Objects.nonNull(chooseTemplate)&&chooseTemplate.length>0){
+            Map<String, String> retChooseTemplates = new HashMap<>();
+            for (String templateName:chooseTemplate) {
+                retChooseTemplates.put(templateName,templates.get(templateName));
+            }
+            return retChooseTemplates;
+        }
         return templates;
     }
 

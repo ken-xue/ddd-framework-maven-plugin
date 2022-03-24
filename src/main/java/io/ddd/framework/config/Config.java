@@ -23,7 +23,7 @@ public class Config {
     /**
      * 需要用到的代码模板
      */
-    @Parameter(required = true)
+    @Parameter
     private String[] templates;
     /**
      * 生成代码路径

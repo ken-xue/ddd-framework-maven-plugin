@@ -6,7 +6,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.junit.Test;
 
 public class CodeGenerateTest {
-    @Test
+//    @Test
     public void testCodeGenerate() throws MojoExecutionException, MojoFailureException {
         DataSource dataSource = new DataSource();
         Config config = new Config();

@@ -72,7 +72,7 @@ public class CodeHandler {
         tableDO.setClassname(StringUtils.uncapitalize(className));
         tableDO.setAllLowName(StringUtils.lowerCase(className));
         //列信息
-        List<ColumnDO> columsList = new ArrayList<>();
+        List<ColumnDO> columnsList = new ArrayList<>();
         for (Map<String, String> column : columns) {
             ColumnDO columnDO = new ColumnDO();
             columnDO.setColumnName(column.get("columnName"));
@@ -100,9 +100,9 @@ public class CodeHandler {
                 tableDO.setPk(columnDO);
             }
 
-            columsList.add(columnDO);
+            columnsList.add(columnDO);
         }
-        tableDO.setColumns(columsList);
+        tableDO.setColumns(columnsList);
 
         //没主键，则第一个字段为主键
         if (tableDO.getPk() == null) {
@@ -133,7 +133,7 @@ public class CodeHandler {
         VelocityContext context = new VelocityContext(map);
 
         //获取模板列表
-        Map<String, String> templates = Constant.getTemplates();
+        Map<String, String> templates = Constant.getTemplates(config.getTemplates());
         List fileNames = new ArrayList<String>();
         for (String template : templates.keySet()) {
             //渲染模板
@@ -187,11 +187,13 @@ public class CodeHandler {
         return column2Java(tableName);
     }
 
-
+    /**
+     * 保存生成的文件路径供删除
+     * @param fileNames
+     */
     private void storeFileNames(List<String> fileNames) {
         try (FileWriter fw = new FileWriter(Constant.STORE_LAST_GENERATOR_FILE_PATH)) {
             for (String s : fileNames) {
-                s = "/Users/biaoyang/IdeaProjects/ddd-framework" + s.replace("..", "");
                 fw.write(s + "\n");
             }
         } catch (Exception e) {
