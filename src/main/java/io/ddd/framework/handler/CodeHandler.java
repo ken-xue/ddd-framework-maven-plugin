@@ -40,7 +40,7 @@ public class CodeHandler {
         String[] tableNames = configuration.getTableNames();
         log.info("tablesNames:{}", tableNames);
         List fileNames = new ArrayList<String>();
-        Arrays.stream(tableNames).forEach(v -> {
+        for(String v:tableNames) {
             if (!StringUtils.isNotBlank(v)) log.error("tableName must not null");
             //2.查询表结构
             Map<String, String> table = queryTable(v);
@@ -55,7 +55,7 @@ public class CodeHandler {
             } catch (ConfigurationException e) {
                 e.printStackTrace();
             }
-        });
+        }
         storeFileNames(fileNames);
     }
 
@@ -142,12 +142,14 @@ public class CodeHandler {
                         .replace("{classLowName}", tableDO.getAllLowName()) + template.replace(".vm", "")
                         .replace("Domain", tableDO.getClassName());
                 //判断文件夹是否存在,不存在则创建
-                String sourcePath = config.getSourcePath();
+                String sourcePath = config.getAbsolutePath();
                 String dir = fileAbsolutePath.substring(0, fileAbsolutePath.lastIndexOf(Constant.separator));
                 if (StringUtils.isNotBlank(sourcePath)) {
                     if (sourcePath.charAt(sourcePath.length() - 1) != File.separatorChar) sourcePath += Constant.separator;
                     dir = sourcePath + dir;
+                    fileAbsolutePath = sourcePath + fileAbsolutePath;
                 }
+                log.info("path:{}",dir);
                 File folder = new File(dir);
                 if (!folder.exists()) folder.mkdirs();
                 fileNames.add(fileAbsolutePath);

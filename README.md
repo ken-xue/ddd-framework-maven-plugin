@@ -19,10 +19,10 @@
             <password>123456</password>
         </dataSource>
         <config>
-            <sourcePath>./</sourcePath>
+            <absolutePath>/Users/biaoyang/IdeaProjects/ddd/ddd-framework/</absolutePath>
             <tablePrefixes>sys_,biz_</tablePrefixes>
             <moduleName>sys</moduleName>
-            <packageName>io.ddd.framework</packageName>
+            <basePackageName>io.ddd.framework</basePackageName>
             <tableNames>sys_user,sys_menu</tableNames>
             <excludeFields>id,uuid,creator,modifier,gmt_create,gmt_modified,deleted</excludeFields>
             <author>麦奇</author>

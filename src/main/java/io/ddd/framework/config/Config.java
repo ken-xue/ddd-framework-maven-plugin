@@ -29,7 +29,7 @@ public class Config {
      * 生成代码路径
      */
     @Parameter
-    private String sourcePath;
+    private String absolutePath;
     /**
      * 表前缀
      */

@@ -1,5 +1,6 @@
 package ${basePackageName}.infrastructure.repositoryimpl.${moduleName}.database.convertor;
 
+import ${basePackageName}.infrastructure.common.convector.Convector;
 import ${basePackageName}.domain.domain.${moduleName}.${className};
 import ${basePackageName}.infrastructure.repositoryimpl.${moduleName}.database.dataobject.${className}DO;
 import org.springframework.stereotype.Component;

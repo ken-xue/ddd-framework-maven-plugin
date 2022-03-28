@@ -17,7 +17,7 @@ import java.sql.Connection;
 @Data
 @Slf4j
 @Mojo( name= "code" , defaultPhase= LifecyclePhase.PACKAGE,threadSafe = true)
-public class ExecutorMojo extends AbstractMojo {
+public class CodeMojo extends AbstractMojo {
     /**
      * 数据库连接
      */
@@ -40,8 +40,10 @@ public class ExecutorMojo extends AbstractMojo {
         log.info("dataSource:{}",dataSource);
         //1.加载用户配置
         conn = dataSource.getConn();
+        log.info("conn:{}",conn);
         //2.创建代码生成器处理器
         CodeHandler handler = new CodeHandler(conn);
+        log.info("handler:{}",handler);
         handler.execute(config);
     }
 
