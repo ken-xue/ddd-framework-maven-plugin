@@ -2,7 +2,7 @@ package io.ddd.framework.mojo;
 
 import io.ddd.framework.config.Config;
 import io.ddd.framework.config.DataSource;
-import io.ddd.framework.handler.CodeHandler;
+import io.ddd.framework.handler.GenerateCodeHandler;
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -16,8 +16,8 @@ import org.apache.maven.plugins.annotations.Parameter;
 import java.sql.Connection;
 @Data
 @Slf4j
-@Mojo( name= "code" , defaultPhase= LifecyclePhase.PACKAGE,threadSafe = true)
-public class CodeMojo extends AbstractMojo {
+@Mojo( name= "generate" , defaultPhase= LifecyclePhase.PACKAGE,threadSafe = true)
+public class GenerateMojo extends AbstractMojo {
     /**
      * 数据库连接
      */
@@ -42,7 +42,7 @@ public class CodeMojo extends AbstractMojo {
         conn = dataSource.getConn();
         log.info("conn:{}",conn);
         //2.创建代码生成器处理器
-        CodeHandler handler = new CodeHandler(conn);
+        GenerateCodeHandler handler = new GenerateCodeHandler(conn);
         log.info("handler:{}",handler);
         handler.execute(config);
     }

@@ -32,7 +32,7 @@ import java.util.*;
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
-public class CodeHandler {
+public class GenerateCodeHandler {
 
     private Connection connection;
 
@@ -149,7 +149,7 @@ public class CodeHandler {
                     dir = sourcePath + dir;
                     fileAbsolutePath = sourcePath + fileAbsolutePath;
                 }
-                log.info("path:{}",dir);
+                log.info("generate path:{}",fileAbsolutePath);
                 File folder = new File(dir);
                 if (!folder.exists()) folder.mkdirs();
                 fileNames.add(fileAbsolutePath);

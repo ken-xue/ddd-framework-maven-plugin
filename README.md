@@ -33,7 +33,7 @@
 ```
 3.execute cmd
 ```shell
-mvn ddd-framework:code
+mvn ddd-framework:generate
 ```
 4.clean last time code
 ```shell
