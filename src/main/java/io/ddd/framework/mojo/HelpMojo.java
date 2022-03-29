@@ -24,7 +24,7 @@ public class HelpMojo extends AbstractMojo {
         log.info("Maven code generate help");
         log.info("");
         log.info("use generate cmd:");
-        log.info("             mvn ddd-framework:code");
+        log.info("             mvn ddd-framework:generate");
         log.info("delete last file:");
         log.info("             mvn ddd-framework:delete");
     }
