@@ -26,7 +26,7 @@ public class Constant {
         //key:模板路径,value:生成后的路径
         Map<String, String> templates = new HashMap<>();
         String basePath = basePackageName.replaceAll("\\.", "/");
-        templates.put("DomainMenu.sql.vm", "core/infrastructure/src/main/resources/script/");
+        templates.put("DomainMenu.sql.vm", "doc/script/{moduleName}/");
         templates.put("Domain.java.vm", String.format("core/domain/src/main/java/%s/domain/domain/{moduleName}/",basePath));
         //exe
         templates.put("DomainAddCmdExe.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/command/",basePath));
@@ -47,7 +47,7 @@ public class Constant {
         templates.put("DomainRepositoryImpl.java.vm", String.format("core/infrastructure/src/main/java/%s/infrastructure/repositoryimpl/{moduleName}/",basePath));
         //mapper
         templates.put("DomainMapper.java.vm", String.format("core/infrastructure/src/main/java/%s/infrastructure/repositoryimpl/{moduleName}/database/mapper/",basePath));
-        templates.put("DomainMapper.xml.vm", "core/infrastructure/src/main/resources/mybatis/");
+        templates.put("DomainMapper.xml.vm", "core/infrastructure/src/main/resources/mybatis/{moduleName}/");
         //controller
         templates.put("DomainController.java.vm", String.format("core/adapter/src/main/java/%s/adapter/rest/{moduleName}/",basePath));
         //cmd
