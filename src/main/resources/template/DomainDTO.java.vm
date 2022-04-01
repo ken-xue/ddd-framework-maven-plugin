@@ -3,6 +3,7 @@ package ${basePackageName}.coreclient.dto.${moduleName}.${allLowName};
 import ${basePackageName}.coreclient.dto.common.command.CommonDTO;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import io.swagger.annotations.ApiModelProperty;
 /**
  * ${comments}
  * @author ${author}
@@ -15,6 +16,7 @@ public class ${className}DTO extends CommonDTO {
     /**
      * ${column.comments}
      */
+    @ApiModelProperty(value = "${column.comments}")
     private $column.attrType $column.attrname;
 #end
 }
