@@ -13,9 +13,6 @@ import io.swagger.annotations.ApiModelProperty;
 @Accessors(chain = true)
 public class ${className}DTO extends CommonDTO {
 #foreach ($column in $columns)
-    /**
-     * ${column.comments}
-     */
     @ApiModelProperty(value = "${column.comments}")
     private $column.attrType $column.attrname;
 #end
