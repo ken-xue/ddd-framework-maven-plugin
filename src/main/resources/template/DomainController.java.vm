@@ -31,15 +31,15 @@ public class ${className}Controller extends BasicController {
     @PostMapping("/add")
     @Permissions("${moduleName}:${classname}:add")
     @ApiOperation(value = "添加",httpMethod = "POST")
-    public Response add(@RequestBody @Valid ${className}AddCmd ${classname}AddCmd) {
-        return ${classname}AppService.add(${classname}AddCmd);
+    public Response add(@RequestBody @Valid ${className}AddCmd cmd) {
+        return ${classname}AppService.add(cmd);
     }
 
     @DeleteMapping("/delete")
     @Permissions("${moduleName}:${classname}:delete")
     @ApiOperation(value = "删除",httpMethod = "DELETE")
-    public Response delete(@RequestBody @Valid ${className}DeleteCmd ${classname}DeleteCmd){
-        return ${classname}AppService.delete(${classname}DeleteCmd);
+    public Response delete(@RequestBody @Valid ${className}DeleteCmd cmd){
+        return ${classname}AppService.delete(cmd);
     }
 
     @GetMapping("/page")
@@ -48,8 +48,8 @@ public class ${className}Controller extends BasicController {
     @ApiResponses({
             @ApiResponse(code = 0, message = "OK", response = ${className}DTO.class)
     })
-    public Response page(@ModelAttribute @Valid ${className}PageQry ${classname}PageQry){
-        return ${classname}AppService.page(${classname}PageQry);
+    public Response page(@ModelAttribute @Valid ${className}PageQry qry){
+        return ${classname}AppService.page(qry);
     }
 
     @GetMapping("/list")
@@ -58,8 +58,8 @@ public class ${className}Controller extends BasicController {
     @ApiResponses({
             @ApiResponse(code = 0, message = "OK", response = ${className}DTO.class)
     })
-    public Response list(@ModelAttribute @Valid ${className}ListQry ${classname}ListQry){
-        return ${classname}AppService.list(${classname}ListQry);
+    public Response list(@ModelAttribute @Valid ${className}ListQry qry){
+        return ${classname}AppService.list(qry);
     }
 
     @GetMapping("/info")
@@ -68,14 +68,14 @@ public class ${className}Controller extends BasicController {
     @ApiResponses({
             @ApiResponse(code = 0, message = "OK", response = ${className}DTO.class)
     })
-    public Response info(@ModelAttribute @Valid ${className}GetQry ${classname}GetQry){
-        return ${classname}AppService.getById(${classname}GetQry);
+    public Response info(@ModelAttribute @Valid ${className}GetQry qry){
+        return ${classname}AppService.getById(qry);
     }
 
     @PutMapping("/update")
     @Permissions("${moduleName}:${classname}:update")
     @ApiOperation(value = "更新",httpMethod = "PUT")
-    public Response update(@RequestBody ${className}UpdateCmd ${classname}UpdateCmd){
-        return ${classname}AppService.update(${classname}UpdateCmd);
+    public Response update(@RequestBody ${className}UpdateCmd cmd){
+        return ${classname}AppService.update(cmd);
     }
 }
