@@ -46,7 +46,7 @@ public class ${className}Controller extends BasicController {
     @Permissions("${moduleName}:${classname}:page")
     @ApiOperation(value = "列表",httpMethod = "GET")
     @ApiResponses({
-            @ApiResponse(code = 0, message = "OK", response = ${className}DTO.class)
+            @ApiResponse(code = 2000, message = "OK", response = ${className}DTO.class)
     })
     public Response page(@ModelAttribute @Valid ${className}PageQry qry){
         return ${classname}AppService.page(qry);
@@ -56,7 +56,7 @@ public class ${className}Controller extends BasicController {
     @Permissions("${moduleName}:${classname}:list")
     @ApiOperation(value = "列表",httpMethod = "GET")
     @ApiResponses({
-            @ApiResponse(code = 0, message = "OK", response = ${className}DTO.class)
+            @ApiResponse(code = 2000, message = "OK", response = ${className}DTO.class)
     })
     public Response list(@ModelAttribute @Valid ${className}ListQry qry){
         return ${classname}AppService.list(qry);
@@ -66,7 +66,7 @@ public class ${className}Controller extends BasicController {
     @Permissions("${moduleName}:${classname}:info")
     @ApiOperation(value = "详情",httpMethod = "GET")
     @ApiResponses({
-            @ApiResponse(code = 0, message = "OK", response = ${className}DTO.class)
+            @ApiResponse(code = 2000, message = "OK", response = ${className}DTO.class)
     })
     public Response info(@ModelAttribute @Valid ${className}GetQry qry){
         return ${classname}AppService.getById(qry);

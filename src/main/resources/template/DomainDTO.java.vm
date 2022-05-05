@@ -4,6 +4,8 @@ import ${basePackageName}.coreclient.dto.common.command.CommonDTO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.util.Date;
 /**
  * ${comments}
  * @author ${author}

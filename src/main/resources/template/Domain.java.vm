@@ -4,6 +4,7 @@ import ${basePackageName}.domain.common.CommonEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Date;
 /**
  * ${comments}
  * @author ${author}

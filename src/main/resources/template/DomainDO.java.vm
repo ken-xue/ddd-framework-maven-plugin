@@ -3,6 +3,7 @@ package ${basePackageName}.infrastructure.repositoryimpl.${moduleName}.database.
 import com.baomidou.mybatisplus.annotation.TableName;
 import ${basePackageName}.domain.common.CommonEntity;
 import lombok.Data;
+import java.util.Date;
 /**
  * ${comments}
  * @author ${author}
