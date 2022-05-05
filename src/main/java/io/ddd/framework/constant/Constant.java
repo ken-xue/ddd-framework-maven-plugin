@@ -36,7 +36,7 @@ public class Constant {
         templates.put("DomainUpdateCmdExe.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/command/",basePath));
         templates.put("DomainPageQryExe.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/command/query/",basePath));
         //service
-        templates.put("DomainAppAppServiceImpl.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/service/",basePath));
+        templates.put("DomainAppServiceImpl.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/service/",basePath));
         templates.put("DomainAppService.java.vm", String.format("core/core-client/src/main/java/%s/coreclient/api/{moduleName}/",basePath));
         //dto
         templates.put("DomainDTO.java.vm", String.format("core/core-client/src/main/java/%s/coreclient/dto/{moduleName}/{classLowName}/",basePath));
