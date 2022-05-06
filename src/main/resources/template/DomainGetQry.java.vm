@@ -4,6 +4,7 @@ import ${basePackageName}.coreclient.dto.common.command.CommonCommand;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import java.util.Date;
+import io.swagger.annotations.ApiModelProperty;
 /**
  * ${comments}
  * @author ${author}
@@ -15,9 +16,7 @@ public class ${className}GetQry extends CommonCommand {
 
     private Long id;
 #foreach ($column in $columns)
-    /**
-     * ${column.comments}
-     */
+    @ApiModelProperty(value = "${column.comments}")
     private $column.attrType $column.attrname;
 #end
 }
