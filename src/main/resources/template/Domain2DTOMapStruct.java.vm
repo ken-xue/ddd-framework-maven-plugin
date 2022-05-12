@@ -1,4 +1,4 @@
-package ${basePackageName}.application.application.${moduleName}.${allLowName}.assembler;
+package ${basePackageName}.application.${moduleName}.${allLowName}.assembler;
 
 import ${basePackageName}.coreclient.dto.${moduleName}.${allLowName}.${className}DTO;
 import ${basePackageName}.domain.domain.${moduleName}.${className};

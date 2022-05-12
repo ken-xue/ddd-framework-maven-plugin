@@ -1,13 +1,13 @@
-package ${basePackageName}.application.application.${moduleName}.${allLowName}.service;
+package ${basePackageName}.application.${moduleName}.${allLowName}.service;
 
 import ${basePackageName}.coreclient.api.${moduleName}.${className}AppService;
 import ${basePackageName}.coreclient.dto.${moduleName}.${allLowName}.*;
-import ${basePackageName}.application.application.${moduleName}.${allLowName}.command.${className}AddCmdExe;
-import ${basePackageName}.application.application.${moduleName}.${allLowName}.command.${className}DeleteCmdExe;
-import ${basePackageName}.application.application.${moduleName}.${allLowName}.command.${className}UpdateCmdExe;
-import ${basePackageName}.application.application.${moduleName}.${allLowName}.command.query.${className}GetQryExe;
-import ${basePackageName}.application.application.${moduleName}.${allLowName}.command.query.${className}ListQryExe;
-import ${basePackageName}.application.application.${moduleName}.${allLowName}.command.query.${className}PageQryExe;
+import ${basePackageName}.application.${moduleName}.${allLowName}.command.${className}AddCmdExe;
+import ${basePackageName}.application.${moduleName}.${allLowName}.command.${className}DeleteCmdExe;
+import ${basePackageName}.application.${moduleName}.${allLowName}.command.${className}UpdateCmdExe;
+import ${basePackageName}.application.${moduleName}.${allLowName}.command.query.${className}GetQryExe;
+import ${basePackageName}.application.${moduleName}.${allLowName}.command.query.${className}ListQryExe;
+import ${basePackageName}.application.${moduleName}.${allLowName}.command.query.${className}PageQryExe;
 import ${basePackageName}.coreclient.dto.common.response.MultiResponse;
 import ${basePackageName}.coreclient.dto.common.response.PageResponse;
 import ${basePackageName}.coreclient.dto.common.response.Response;

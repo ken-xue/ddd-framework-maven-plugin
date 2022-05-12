@@ -1,6 +1,6 @@
-package ${basePackageName}.application.application.${moduleName}.${allLowName}.command;
+package ${basePackageName}.application.${moduleName}.${allLowName}.command;
 
-import ${basePackageName}.application.application.${moduleName}.${allLowName}.assembler.${className}2DTOAssembler;
+import ${basePackageName}.application.${moduleName}.${allLowName}.assembler.${className}2DTOAssembler;
 import ${basePackageName}.domain.domain.${moduleName}.${className};
 import ${basePackageName}.coreclient.dto.common.response.Response;
 import ${basePackageName}.coreclient.dto.${moduleName}.${allLowName}.${className}UpdateCmd;

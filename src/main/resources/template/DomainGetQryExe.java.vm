@@ -1,6 +1,6 @@
-package ${basePackageName}.application.application.${moduleName}.${allLowName}.command.query;
+package ${basePackageName}.application.${moduleName}.${allLowName}.command.query;
 
-import ${basePackageName}.application.application.${moduleName}.${allLowName}.assembler.${className}2DTOAssembler;
+import ${basePackageName}.application.${moduleName}.${allLowName}.assembler.${className}2DTOAssembler;
 import ${basePackageName}.coreclient.dto.${moduleName}.${allLowName}.${className}DTO;
 import ${basePackageName}.coreclient.dto.common.response.SingleResponse;
 import ${basePackageName}.coreclient.dto.${moduleName}.${allLowName}.${className}GetQry;

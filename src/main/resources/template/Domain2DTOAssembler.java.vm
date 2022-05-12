@@ -1,4 +1,4 @@
-package ${basePackageName}.application.application.${moduleName}.${allLowName}.assembler;
+package ${basePackageName}.application.${moduleName}.${allLowName}.assembler;
 
 import ${basePackageName}.application.common.assembler.Assembler;
 import ${basePackageName}.coreclient.dto.common.page.Page;

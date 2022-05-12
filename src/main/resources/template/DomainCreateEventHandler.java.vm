@@ -1,4 +1,4 @@
-package ${basePackageName}.application.application.${moduleName}.${allLowName}.handler;
+package ${basePackageName}.application.${moduleName}.${allLowName}.handler;
 
 import ${basePackageName}.application.common.event.EventHandler;
 import ${basePackageName}.application.common.event.EventHandlerI;

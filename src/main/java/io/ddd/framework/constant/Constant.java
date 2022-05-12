@@ -29,14 +29,14 @@ public class Constant {
         templates.put("DomainMenu.sql.vm", "doc/script/{moduleName}/");
         templates.put("Domain.java.vm", String.format("core/domain/src/main/java/%s/domain/domain/{moduleName}/",basePath));
         //exe
-        templates.put("DomainAddCmdExe.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/command/",basePath));
-        templates.put("DomainDeleteCmdExe.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/command/",basePath));
-        templates.put("DomainGetQryExe.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/command/query/",basePath));
-        templates.put("DomainListQryExe.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/command/query/",basePath));
-        templates.put("DomainUpdateCmdExe.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/command/",basePath));
-        templates.put("DomainPageQryExe.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/command/query/",basePath));
+        templates.put("DomainAddCmdExe.java.vm", String.format("core/application/src/main/java/%s/application/{moduleName}/{classLowName}/command/",basePath));
+        templates.put("DomainDeleteCmdExe.java.vm", String.format("core/application/src/main/java/%s/application/{moduleName}/{classLowName}/command/",basePath));
+        templates.put("DomainGetQryExe.java.vm", String.format("core/application/src/main/java/%s/application/{moduleName}/{classLowName}/command/query/",basePath));
+        templates.put("DomainListQryExe.java.vm", String.format("core/application/src/main/java/%s/application/{moduleName}/{classLowName}/command/query/",basePath));
+        templates.put("DomainUpdateCmdExe.java.vm", String.format("core/application/src/main/java/%s/application/{moduleName}/{classLowName}/command/",basePath));
+        templates.put("DomainPageQryExe.java.vm", String.format("core/application/src/main/java/%s/application/{moduleName}/{classLowName}/command/query/",basePath));
         //service
-        templates.put("DomainAppServiceImpl.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/service/",basePath));
+        templates.put("DomainAppServiceImpl.java.vm", String.format("core/application/src/main/java/%s/application/{moduleName}/{classLowName}/service/",basePath));
         templates.put("DomainAppService.java.vm", String.format("core/core-client/src/main/java/%s/coreclient/api/{moduleName}/",basePath));
         //dto
         templates.put("DomainDTO.java.vm", String.format("core/core-client/src/main/java/%s/coreclient/dto/{moduleName}/{classLowName}/",basePath));
@@ -63,12 +63,12 @@ public class Constant {
         templates.put("Domain2DOConvector.java.vm", String.format("core/infrastructure/src/main/java/%s/infrastructure/repositoryimpl/{moduleName}/database/convertor/",basePath));
         templates.put("Domain2DOMapStruct.java.vm", String.format("core/infrastructure/src/main/java/%s/infrastructure/repositoryimpl/{moduleName}/database/convertor/",basePath));
         //dto assembler
-        templates.put("Domain2DTOAssembler.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/assembler/",basePath));
-        templates.put("Domain2DTOMapStruct.java.vm", String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/assembler/",basePath));
+        templates.put("Domain2DTOAssembler.java.vm", String.format("core/application/src/main/java/%s/application/{moduleName}/{classLowName}/assembler/",basePath));
+        templates.put("Domain2DTOMapStruct.java.vm", String.format("core/application/src/main/java/%s/application/{moduleName}/{classLowName}/assembler/",basePath));
         //event handler
-        templates.put("DomainDeleteEventHandler.java.vm",String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/handler/",basePath));
-        templates.put("DomainUpdateEventHandler.java.vm",String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/handler/",basePath));
-        templates.put("DomainCreateEventHandler.java.vm",String.format("core/application/src/main/java/%s/application/application/{moduleName}/{classLowName}/handler/",basePath));
+        templates.put("DomainDeleteEventHandler.java.vm",String.format("core/application/src/main/java/%s/application/{moduleName}/{classLowName}/handler/",basePath));
+        templates.put("DomainUpdateEventHandler.java.vm",String.format("core/application/src/main/java/%s/application/{moduleName}/{classLowName}/handler/",basePath));
+        templates.put("DomainCreateEventHandler.java.vm",String.format("core/application/src/main/java/%s/application/{moduleName}/{classLowName}/handler/",basePath));
         //event
         templates.put("DomainCreateEvent.java.vm",String.format("core/core-client/src/main/java/%s/coreclient/dto/{moduleName}/{classLowName}/event/",basePath));
         templates.put("DomainDeleteEvent.java.vm",String.format("core/core-client/src/main/java/%s/coreclient/dto/{moduleName}/{classLowName}/event/",basePath));

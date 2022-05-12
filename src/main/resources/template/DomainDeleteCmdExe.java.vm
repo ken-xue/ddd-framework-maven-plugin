@@ -1,4 +1,4 @@
-package ${basePackageName}.application.application.${moduleName}.${allLowName}.command;
+package ${basePackageName}.application.${moduleName}.${allLowName}.command;
 
 import ${basePackageName}.coreclient.context.UserThreadContext;
 import ${basePackageName}.coreclient.dto.common.response.Response;
