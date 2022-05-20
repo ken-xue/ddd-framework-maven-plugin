@@ -10,7 +10,7 @@
 <plugin>
     <groupId>io.ddd.framework</groupId>
     <artifactId>ddd-framework-maven-plugin</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.0</version>
     <configuration>
         <dataSource>
             <driverName>com.mysql.cj.jdbc.Driver</driverName>
