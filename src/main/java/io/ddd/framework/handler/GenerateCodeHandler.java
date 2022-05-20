@@ -51,7 +51,7 @@ public class GenerateCodeHandler {
                 //3.查询列信息
                 List<Map<String, String>> columns = queryColumns(v);
                 if (Objects.isNull(columns)||columns.size()<1) {
-                    log.info("表：{},字段信息为空:{}",v, columns);
+                    log.error("表：{},字段信息为空:{}",v, columns);
                     continue;
                 }
                 //4.排除字段
