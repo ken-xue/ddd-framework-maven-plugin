@@ -1,11 +1,14 @@
 package io.ddd.framework.database;
 
+import lombok.ToString;
+
 import java.util.List;
 
 /**
  * @Author: 麦奇
  * @Date: 21-11-14 下午11:25
  */
+@ToString
 public class TableDO {
     //表的名称
     private String tableName;

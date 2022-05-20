@@ -37,30 +37,38 @@ public class GenerateCodeHandler {
     private Connection connection;
 
     public void execute(Config configuration) {
-        String[] tableNames = configuration.getTableNames();
-        log.info("tablesNames:{}", tableNames);
-        List fileNames = new ArrayList<String>();
-        for(String v:tableNames) {
-            if (!StringUtils.isNotBlank(v)) log.error("tableName must not null");
-            //2.查询表结构
-            Map<String, String> table = queryTable(v);
-            //3.查询列信息
-            List<Map<String, String>> columns = queryColumns(v);
-            //4.排除字段
-            List<String> exclude = Arrays.asList(configuration.getExcludeFields());
-            columns.removeIf(map -> exclude.contains(map.get("columnName")));
-            //5.生成文件
-            try {
-                generate(table, columns,fileNames, configuration);
-            } catch (ConfigurationException e) {
-                e.printStackTrace();
+        try {
+            String[] tableNames = configuration.getTableNames();
+            log.info("tablesNames:{}", tableNames);
+            List fileNames = new ArrayList<String>();
+            for (String v : tableNames) {
+                v = v.trim();
+                if (!StringUtils.isNotBlank(v)) {
+                    log.error("tableName must not null");
+                }
+                //2.查询表结构
+                Map<String, String> table = queryTable(v);
+                //3.查询列信息
+                List<Map<String, String>> columns = queryColumns(v);
+                if (Objects.isNull(columns)||columns.size()<1) {
+                    log.info("表：{},字段信息为空:{}",v, columns);
+                    continue;
+                }
+                //4.排除字段
+                List<String> exclude = Arrays.asList(configuration.getExcludeFields());
+                columns.removeIf(map -> exclude.contains(map.get("columnName")));
+                //5.生成文件
+                generate(table, columns, fileNames, configuration);
+
             }
+            storeFileNames(fileNames);
+        } catch (Throwable e) {
+            e.printStackTrace();
         }
-        storeFileNames(fileNames);
     }
 
 
-    public void generate(Map<String, String> table, List<Map<String, String>> columns,List fileNames, Config config) throws ConfigurationException {
+    public void generate(Map<String, String> table, List<Map<String, String>> columns, List fileNames, Config config) throws ConfigurationException {
         //配置信息
         boolean hasBigDecimal = false;
         boolean hasList = false;
@@ -69,6 +77,7 @@ public class GenerateCodeHandler {
         tableDO.setTableName(table.get("tableName"));
         tableDO.setComments(table.get("tableComment"));
         //表名转换成Java类名
+        log.info("info:{},config:{}",tableDO,config.getTablePrefixes());
         String className = table2Java(tableDO.getTableName(), config.getTablePrefixes());
         tableDO.setClassName(className);
         tableDO.setClassname(StringUtils.uncapitalize(className));
@@ -131,7 +140,7 @@ public class GenerateCodeHandler {
         VelocityContext context = new VelocityContext(map);
 
         //获取模板列表
-        Map<String, String> templates = Constant.getTemplates(config.getTemplates(),config.getBasePackageName());
+        Map<String, String> templates = Constant.getTemplates(config.getTemplates(), config.getBasePackageName());
         for (String template : templates.keySet()) {
             //渲染模板
             StringWriter sw = new StringWriter();
@@ -145,11 +154,12 @@ public class GenerateCodeHandler {
                 String sourcePath = config.getAbsolutePath();
                 String dir = fileAbsolutePath.substring(0, fileAbsolutePath.lastIndexOf(Constant.separator));
                 if (StringUtils.isNotBlank(sourcePath)) {
-                    if (sourcePath.charAt(sourcePath.length() - 1) != File.separatorChar) sourcePath += Constant.separator;
+                    if (sourcePath.charAt(sourcePath.length() - 1) != File.separatorChar)
+                        sourcePath += Constant.separator;
                     dir = sourcePath + dir;
                     fileAbsolutePath = sourcePath + fileAbsolutePath;
                 }
-                log.info("generate path:{}",fileAbsolutePath);
+                log.info("generate path:{}", fileAbsolutePath);
                 File folder = new File(dir);
                 if (!folder.exists()) folder.mkdirs();
                 fileNames.add(fileAbsolutePath);
@@ -185,6 +195,7 @@ public class GenerateCodeHandler {
 
     /**
      * 保存生成的文件路径供删除
+     *
      * @param fileNames
      */
     private void storeFileNames(List<String> fileNames) {
@@ -232,7 +243,7 @@ public class GenerateCodeHandler {
             PreparedStatement preparedStatement = connection.prepareStatement(String.format(QuerySQL.MYSQL.queryColumns, tableName));
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Map<String, String> map = new HashMap<>();
+                Map<String, String> map = new HashMap<>(2<<2);
                 map.put("columnName", resultSet.getString("columnName"));
                 map.put("dataType", resultSet.getString("dataType"));
                 map.put("columnComment", resultSet.getString("columnComment"));
@@ -240,6 +251,7 @@ public class GenerateCodeHandler {
                 map.put("extra", resultSet.getString("extra"));
                 ret.add(map);
             }
+            log.info("ret:{}",ret);
         } catch (Exception e) {
             e.printStackTrace();
         }

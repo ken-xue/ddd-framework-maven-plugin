@@ -24,8 +24,12 @@ public class Constant {
      */
     public static Map<String, String> getTemplates(String[] chooseTemplate,String basePackageName) {
         //key:模板路径,value:生成后的路径
-        Map<String, String> templates = new HashMap<>();
+        Map<String, String> templates = new HashMap<>(2<<4);
         String basePath = basePackageName.replaceAll("\\.", "/");
+        //view
+        templates.put("Domain.js.vm", "/doc/view/{moduleName}/");
+        templates.put("index.vue.vm", "/doc/view/{moduleName}/");
+        //sql
         templates.put("DomainMenu.sql.vm", "doc/script/{moduleName}/");
         templates.put("Domain.java.vm", String.format("core/domain/src/main/java/%s/domain/domain/{moduleName}/",basePath));
         //exe
