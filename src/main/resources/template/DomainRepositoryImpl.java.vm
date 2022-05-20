@@ -44,7 +44,7 @@ public class ${className}RepositoryImpl implements ${className}Repository {
 
     @Override
     public List<${className}> list(${className}ListQry ${classname}ListQry) {
-        return ${classname}2DOConvector.toDomainList(${classname}Mapper.selectList(new QueryWrapper<>().eq("deleted",false)));
+        return ${classname}2DOConvector.toDomainList(${classname}Mapper.selectList(new QueryWrapper<${className}DO>().eq("deleted",false)));
     }
 
     @Override

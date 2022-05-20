@@ -2,7 +2,7 @@ package ${basePackageName}.adapter.rest.${moduleName};
 
 import ${basePackageName}.adapter.common.annotation.Permissions;
 import ${basePackageName}.adapter.rest.common.BasicController;
-import ${basePackageName}.coreclient.api.sys.${className}AppService;
+import ${basePackageName}.coreclient.api.${moduleName}.${className}AppService;
 import ${basePackageName}.coreclient.dto.common.response.Response;
 import ${basePackageName}.coreclient.dto.${moduleName}.${allLowName}.*;
 import org.springframework.web.bind.annotation.*;
