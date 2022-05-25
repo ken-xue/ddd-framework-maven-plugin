@@ -83,7 +83,7 @@ import { add, del, info, page, update } from '@/api/${moduleName}/${classname}'
 import { nestedGetQuery } from "@/utils";
 
 export default {
-    name: 'Role',
+    name: '${className}',
     components: {},
     data() {
         return {
