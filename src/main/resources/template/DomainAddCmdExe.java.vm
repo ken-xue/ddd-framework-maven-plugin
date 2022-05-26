@@ -22,6 +22,7 @@ public class ${className}AddCmdExe {
 
     public Response execute(${className}AddCmd cmd) {
         ${className} ${classname} = ${classname}2DTOAssembler.toDomain(cmd.get${className}DTO());
+        ${classname}.create();
         ${classname}Repository.create(${classname});
         return Response.success();
     }
