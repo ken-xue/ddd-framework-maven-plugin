@@ -29,21 +29,21 @@ public class ${className}Controller extends BasicController {
     private ${className}AppService ${classname}AppService;
 
     @PostMapping("/add")
-    @Permissions("${moduleName}:${classname}:add")
+    @Permissions("${moduleName}:${pathName}:add")
     @ApiOperation(value = "添加",httpMethod = "POST")
     public Response add(@RequestBody @Valid ${className}AddCmd cmd) {
         return ${classname}AppService.add(cmd);
     }
 
     @DeleteMapping("/delete")
-    @Permissions("${moduleName}:${classname}:delete")
+    @Permissions("${moduleName}:${pathName}:delete")
     @ApiOperation(value = "删除",httpMethod = "DELETE")
     public Response delete(@RequestBody @Valid ${className}DeleteCmd cmd){
         return ${classname}AppService.delete(cmd);
     }
 
     @GetMapping("/page")
-    @Permissions("${moduleName}:${classname}:page")
+    @Permissions("${moduleName}:${pathName}:page")
     @ApiOperation(value = "列表",httpMethod = "GET")
     @ApiResponses({
             @ApiResponse(code = 2000, message = "OK", response = ${className}DTO.class)
@@ -53,7 +53,7 @@ public class ${className}Controller extends BasicController {
     }
 
     @GetMapping("/list")
-    @Permissions("${moduleName}:${classname}:list")
+    @Permissions("${moduleName}:${pathName}:list")
     @ApiOperation(value = "列表",httpMethod = "GET")
     @ApiResponses({
             @ApiResponse(code = 2000, message = "OK", response = ${className}DTO.class)
@@ -63,7 +63,7 @@ public class ${className}Controller extends BasicController {
     }
 
     @GetMapping("/info")
-    @Permissions("${moduleName}:${classname}:info")
+    @Permissions("${moduleName}:${pathName}:info")
     @ApiOperation(value = "详情",httpMethod = "GET")
     @ApiResponses({
             @ApiResponse(code = 2000, message = "OK", response = ${className}DTO.class)
@@ -73,7 +73,7 @@ public class ${className}Controller extends BasicController {
     }
 
     @PutMapping("/update")
-    @Permissions("${moduleName}:${classname}:update")
+    @Permissions("${moduleName}:${pathName}:update")
     @ApiOperation(value = "更新",httpMethod = "PUT")
     public Response update(@RequestBody ${className}UpdateCmd cmd){
         return ${classname}AppService.update(cmd);
